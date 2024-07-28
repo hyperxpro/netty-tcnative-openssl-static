@@ -1,0 +1,29 @@
+# Use Debian 12 as base image
+FROM debian:12
+
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    autoconf \
+    wget \
+    gpg \
+    build-essential \
+    libtool \
+    cmake \
+    autogen \
+    libtool \
+    shtool \
+    python3 \
+    libtool-bin \
+    ninja-build
+
+# Add Corretto repository and install Java 8
+RUN wget -O - https://apt.corretto.aws/corretto.key | gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main" | tee /etc/apt/sources.list.d/corretto.list && \
+    apt-get update && apt-get install -y java-1.8.0-amazon-corretto-jdk
+
+
+# Set the working directory
+WORKDIR /app
+
+# Copy everything from the context directory to the container
+COPY . .
