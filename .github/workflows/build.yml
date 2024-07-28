@@ -18,3 +18,9 @@ jobs:
 
     - name: Create build
       run: docker compose up
+
+    - name: Upload build file
+      uses: actions/upload-artifact@v4
+      with:
+        name: libnetty-tcnative
+        path: netty-tcnative/openssl-static/target/native-jar-work/META-INF/native/libnetty_tcnative_linux_x86_64.so
