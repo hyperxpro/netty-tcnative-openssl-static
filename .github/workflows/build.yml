@@ -1,0 +1,20 @@
+name: Build with Docker
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Checkout netty-tcnative repository
+      uses: actions/checkout@v4
+      with:
+        repository: netty/netty-tcnative
+        path: netty-tcnative
+
+    - name: Create build
+      run: docker compose up
