@@ -1,0 +1,9 @@
+services:
+  build:
+    build:
+      context: .
+      dockerfile: Dockerfile.debian12
+    volumes:
+      - ./netty-tcnative:/app
+    working_dir: /app
+    command: ["./mvnw", "-ntp", "-B", "-am", "-pl", "openssl-static", "clean", "package"]
