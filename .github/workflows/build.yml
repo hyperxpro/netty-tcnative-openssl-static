@@ -19,7 +19,7 @@ jobs:
       with:
         repository: netty/netty-tcnative
         path: netty-tcnative
-        ref: netty-tcnative-parent-2.0.65.Final
+        ref: netty-tcnative-parent-2.0.66.Final
 
     - name: Create build
       run: docker compose up
